@@ -160,6 +160,11 @@ body {
   -webkit-line-clamp: 3;
   -webkit-box-orient: vertical;
 }
+
+.single-review-body { 
+  color: lighten(#333, 10%);
+}
+
 .blog-tags ul {
   display: flex;
   flex-direction: row;
