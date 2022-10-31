@@ -23,6 +23,7 @@ const ReviewCard = ({ review }) => {
             style={{
               background: `url(${review.review_img_url}`,
               backgroundSize: "cover",
+              backgroundPosition: "center",
             }}
             className="blog-cover"
           >
