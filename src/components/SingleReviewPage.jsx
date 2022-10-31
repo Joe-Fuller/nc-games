@@ -26,7 +26,11 @@ const SingleReviewPage = () => {
             return res.json();
           })
           .then(({ comments }) => {
-            setComments(comments);
+            if (comments) {
+              setComments(comments);
+            } else {
+              setComments([]);
+            }
             setIsLoading(false);
           })
       );

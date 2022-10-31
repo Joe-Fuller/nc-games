@@ -26,7 +26,7 @@ const CategoryDropdown = () => {
     <div className="dropdown">
       <button className="dropbtn">Categories</button>
       <div className="dropdown-content">
-        <ul className="dropdown-content">
+        <div className="dropdown-content">
           {categories.map((category) => {
             return (
               <Link
@@ -34,11 +34,11 @@ const CategoryDropdown = () => {
                 key={category.slug}
                 state={{ description: category.description }}
               >
-                <li>{category.slug}</li>
+                <>{category.slug}</>
               </Link>
             );
           })}
-        </ul>
+        </div>
       </div>
     </div>
   );

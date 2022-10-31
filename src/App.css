@@ -101,7 +101,7 @@ body {
   transition: .25s ease;
 }
 
-.blog-container :hover {
+.blog-title :hover {
   border-color: #ff4d4d;
   color: #ff4d4d;
 }

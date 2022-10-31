@@ -1,3 +1,5 @@
+import { Link } from "react-router-dom";
+
 const ReviewCard = ({ review }) => {
   return (
     <div>
@@ -19,23 +21,27 @@ const ReviewCard = ({ review }) => {
       </svg>
       <div className="blog-container">
         <div className="blog-header">
-          <div
-            style={{
-              background: `url(${review.review_img_url}`,
-              backgroundSize: "cover",
-              backgroundPosition: "center",
-            }}
-            className="blog-cover"
-          >
-            <div className="blog-author">
-              {/* add user image here */}
-              <h3>{review.owner}</h3>
+          <Link to={`/reviews/${review.review_id}`} review={review}>
+            <div
+              style={{
+                background: `url(${review.review_img_url}`,
+                backgroundSize: "cover",
+                backgroundPosition: "center",
+              }}
+              className="blog-cover"
+            >
+              <div className="blog-author">
+                {/* add user image here */}
+                <h3>{review.owner}</h3>
+              </div>
             </div>
-          </div>
+          </Link>
         </div>
         <div className="blog-body">
           <div className="blog-title">
-            <h1>{review.title}</h1>
+            <Link to={`/reviews/${review.review_id}`} review={review}>
+              <h1>{review.title}</h1>
+            </Link>
           </div>
           <div className="blog-summary">
             <p>{review.review_body}</p>

@@ -38,7 +38,8 @@
     padding: 12px 16px;
     text-decoration: none;
     display: block;
-    text-align: left;
+    text-align: left; 
+    width: 200px
   }
   
   .dropdown-content a:hover {
