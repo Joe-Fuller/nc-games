@@ -33,6 +33,35 @@ body {
   box-sizing: border-box;
 }
 
+.navbar {
+  display: flex;
+  justify-content: center;
+  background-color: #495c83;
+  height: 60px;
+  margin-bottom: 50px;
+  position: fixed;
+  width: 100%;
+  z-index: 10;
+  top: 55px;
+  box-shadow: rgba(0, 0, 0, 0.45) 0px 25px 20px -20px;
+}
+.navbar ul {
+  display: flex;
+  width: 60%;
+  justify-content: space-between;
+  align-items: center;
+  text-decoration: none;
+  color: white;
+  font-size: 20px;
+  list-style-type: none;
+  text-transform: uppercase;
+  transition: all 0.2s;
+}
+
+.navbar ul :hover {
+  color: rgb(184, 182, 182);
+}
+
 .blog-container {
   background: #fff;
   border-radius: 5px;
