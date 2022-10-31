@@ -73,6 +73,10 @@ body {
   color: rgb(184, 182, 182);
 }
 
+.frontpage {
+  margin: 150px 0 0 0;
+}
+
 .blog-container {
   background: #fff;
   border-radius: 5px;
