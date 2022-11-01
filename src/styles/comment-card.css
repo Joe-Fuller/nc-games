@@ -1,0 +1,145 @@
+.comment-container {
+    background: #fff;
+    border-radius: 5px;
+    box-shadow: hsla(0, 0, 0, .2) 0 4px 2px -2px;
+    font-family: "adelle-sans", sans-serif;
+    font-weight: 100;
+    margin: 48px auto;
+    width: 80%;
+    @media screen and (min-width: 480px) {
+      width: 28rem;
+    }
+    @media screen and (min-width: 767px) {
+      width: 40rem;
+    }
+    @media screen and (min-width: 959px) {
+      width: 50rem;
+    }
+  }
+  .comment-container a {
+    color: #4d4dff;
+    text-decoration: none;
+    transition: .25s ease;
+  }
+  
+
+  
+  .comment-cover {
+    background-size:cover;
+    background-position: center center;
+    border-radius: 5px 5px 0 0;
+    height: 15rem;
+    box-shadow: inset hsla(0, 0, 0, .2) 0 64px 64px 16px;
+  }
+  
+  .comment-author,
+  .comment-author--no-cover {
+    margin: 0 auto;
+    padding-top: .125rem;
+    width: 80%;
+    text-align: left;
+  }
+  
+  .comment-author h3::before,
+  .comment-author--no-cover h3::before {
+    /* background: url("https://s3-us-west-2.amazonaws.com/s.cdpn.io/17779/russ.jpeg"); */
+    background-size: cover;
+    border-radius: 50%;
+    content: " ";
+    display: inline-block;
+    height: 32px;
+    margin-right: .5rem;
+    position: relative;
+    top: 8px;
+    width: 32px;
+  }
+  .comment-author h3 {
+    color: #fff;
+    font-weight: 100;
+  }
+  .comment-author--no-cover h3 {
+    color: lighten(#333, 40%);
+    font-weight: 100;
+  }
+  
+  .comment-body {
+    background-color: lightgray;
+    margin: 0 auto;
+    width: 80%;
+    padding: 10px 0 0 0;
+  }
+  
+  .comment-title a {
+    color: #333;
+    font-weight: 100;
+    text-align: left;
+  }
+
+  .comment-content {
+    color: lighten(#333, 10%);
+    text-align: left;
+    margin: 10px auto 0 auto;
+    width: 80%;
+  }
+
+
+  
+  .comment-tags ul {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    list-style: none;
+    padding-left: 0;
+  }
+  .comment-tags li + li {
+    margin-left: .5rem;
+  }
+  .comment-tags a {
+    border: 1px solid lighten(#333, 40%);
+    border-radius: 3px;
+    color: lighten(#333, 40%);
+    font-size: .75rem;
+    height: 1.5rem;
+    line-height: 1.5rem;
+    letter-spacing: 1px;
+    padding: 0 .5rem;
+    text-align: center;
+    text-transform: uppercase;
+    white-space: nowrap;
+    width: 5rem;
+  }
+  
+  .comment-footer {
+    border-top: 1px solid lighten(#333, 70%);
+    margin: 0 auto;
+    padding-bottom: .125rem;
+    width: 80%;
+  }
+  .comment-footer ul {
+    list-style: none;
+    display: flex;
+    flex: row wrap;
+    justify-content: flex-end;
+    padding-left: 0;
+  }
+  .comment-footer li:first-child {
+    margin-right: auto;
+  }
+  .comment-footer li + li {
+    margin-left: .5rem;
+  }
+  .comment-footer li {
+    color: lighten(#333, 40%);
+    font-size: .75rem;
+    height: 1.5rem;
+    letter-spacing: 1px;
+    line-height: 1.5rem;
+    text-align: center;
+    text-transform: uppercase;
+    position: relative;
+    white-space: nowrap;
+  }
+  
+  .comment-footer a {
+    color: lighten(#333, 40%);
+  }
