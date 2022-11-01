@@ -4,6 +4,7 @@ import "../styles/votes.css";
 
 const Votes = (props) => {
   const review_id = props.review_id;
+  const comment_id = props.comment_id;
   const [votes, setVotes] = useState(props.votes);
   const [votesGiven, setVotesGiven] = useState(0);
   const [error, setError] = useState(null);
@@ -37,26 +38,49 @@ const Votes = (props) => {
   };
 
   const updateVotes = (votesToAdd) => {
-    fetch(`https://ncgamesapp.herokuapp.com/api/reviews/${review_id}`, {
-      method: "PATCH",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify({ inc_votes: votesToAdd }),
-    })
-      .then((res) => {
-        if (!res.ok) {
-          // throw Error(`${res.status}: ${res.statusText}`);
-          throw Error("Error Voting");
-        } else {
-          setError(null);
-        }
+    if (review_id) {
+      fetch(`https://ncgamesapp.herokuapp.com/api/reviews/${review_id}`, {
+        method: "PATCH",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({ inc_votes: votesToAdd }),
       })
-      .catch((err) => {
-        setError(err);
-        setVotesGiven(0);
-        setVotes(props.votes);
-      });
+        .then((res) => {
+          if (!res.ok) {
+            // throw Error(`${res.status}: ${res.statusText}`);
+            throw Error("Error Voting");
+          } else {
+            setError(null);
+          }
+        })
+        .catch((err) => {
+          setError(err);
+          setVotesGiven(0);
+          setVotes(props.votes);
+        });
+    } else if (comment_id) {
+      fetch(`https://ncgamesapp.herokuapp.com/api/comments/${comment_id}`, {
+        method: "PATCH",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({ inc_votes: votesToAdd }),
+      })
+        .then((res) => {
+          if (!res.ok) {
+            // throw Error(`${res.status}: ${res.statusText}`);
+            throw Error("Error Voting");
+          } else {
+            setError(null);
+          }
+        })
+        .catch((err) => {
+          setError(err);
+          setVotesGiven(0);
+          setVotes(props.votes);
+        });
+    }
   };
 
   return (

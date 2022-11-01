@@ -1,3 +1,4 @@
+import Votes from "./Votes";
 import "../styles/comment-card.css";
 
 const CommentCard = ({ comment }) => {
@@ -14,9 +15,11 @@ const CommentCard = ({ comment }) => {
           <li className="comment-published-date">
             {comment.created_at.slice(0, 10)}
           </li>
+          <li>
+            <Votes votes={comment.votes} comment_id={comment.comment_id} />
+          </li>
         </ul>
       </div>
-      <p>votes: {comment.votes}</p>
     </div>
   );
 };

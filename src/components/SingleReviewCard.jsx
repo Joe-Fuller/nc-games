@@ -1,6 +1,13 @@
+import ErrorComponent from "./ErrorComponent";
 import Votes from "./Votes";
 
-const SingleReviewCard = ({ review }) => {
+const SingleReviewCard = (props) => {
+  const review = props.review;
+
+  if (!review) {
+    return <ErrorComponent error={"error"} />;
+  }
+
   return (
     <main className="blog-container">
       <section className="blog-header">
