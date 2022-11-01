@@ -1,11 +1,12 @@
-import { useState } from "react";
+import { useContext, useState } from "react";
+import ActiveUserContext from "../contexts/ActiveUser";
 import "../styles/comment-card.css";
 
 const PostComment = () => {
   const [comment, setComment] = useState("");
+  const { activeUser } = useContext(ActiveUserContext);
 
   const handleChange = (event) => {
-    console.log(event.target.value);
     setComment(event.target.value);
   };
 
