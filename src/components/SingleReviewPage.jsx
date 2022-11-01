@@ -3,6 +3,7 @@ import { useParams } from "react-router-dom";
 import SingleReviewCard from "./SingleReviewCard";
 import ErrorComponent from "./ErrorComponent";
 import CommentCard from "./CommentCard";
+import PostComment from "./PostComment";
 
 const SingleReviewPage = () => {
   const { review_id } = useParams();
@@ -57,6 +58,7 @@ const SingleReviewPage = () => {
   return (
     <div className="frontpage">
       <SingleReviewCard review={review} />
+      <PostComment />
       {comments.map((comment) => {
         return <CommentCard comment={comment} key={comment.comment_id} />;
       })}
