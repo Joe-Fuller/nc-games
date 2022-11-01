@@ -178,7 +178,7 @@ body {
   margin-right: auto;
 }
 .blog-footer li + li {
-  margin-left: .5rem;
+  margin-left: 2rem;
 }
 .blog-footer li {
   color: lighten(#333, 40%);
