@@ -47,6 +47,8 @@ const Votes = (props) => {
       .then((res) => {
         if (!res.ok) {
           throw Error(`${res.status}: ${res.statusText}`);
+        } else {
+          setError(null);
         }
       })
       .catch((err) => {
