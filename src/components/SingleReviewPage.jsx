@@ -1,12 +1,12 @@
 import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import SingleReviewCard from "./SingleReviewCard";
-import CommentCard from "./CommentCard";
+// import CommentCard from "./CommentCard";
 
 const SingleReviewPage = () => {
   const { review_id } = useParams();
   const [review, setReview] = useState(null);
-  const [comments, setComments] = useState([]);
+  // const [comments, setComments] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
 
   useEffect(() => {
@@ -17,23 +17,24 @@ const SingleReviewPage = () => {
       })
       .then(({ review }) => {
         setReview(review);
-      })
-      .then(
-        fetch(
-          `https://ncgamesapp.herokuapp.com/api/reviews/${review_id}/comments`
-        )
-          .then((res) => {
-            return res.json();
-          })
-          .then(({ comments }) => {
-            if (comments) {
-              setComments(comments);
-            } else {
-              setComments([]);
-            }
-            setIsLoading(false);
-          })
-      );
+        setIsLoading(false);
+      });
+    // .then(
+    //   fetch(
+    //     `https://ncgamesapp.herokuapp.com/api/reviews/${review_id}/comments`
+    //   )
+    //     .then((res) => {
+    //       return res.json();
+    //     })
+    //     .then(({ comments }) => {
+    //       if (comments) {
+    //         setComments(comments);
+    //       } else {
+    //         setComments([]);
+    //       }
+    //       setIsLoading(false);
+    //     })
+    // );
   }, [review_id]);
 
   if (isLoading) {
@@ -43,9 +44,9 @@ const SingleReviewPage = () => {
   return (
     <div className="frontpage">
       <SingleReviewCard review={review} />
-      {comments.map((comment) => {
+      {/* {comments.map((comment) => {
         return <CommentCard comment={comment} key={comment.comment_id} />;
-      })}
+      })} */}
     </div>
   );
 };
