@@ -1,5 +1,8 @@
-const ErrorComponent = ({ error }) => {
-  return <div className="frontpage">{error.message}</div>;
+const ErrorComponent = (props) => {
+  const { error, className } = props;
+  return (
+    <div className={className ? className : "frontpage"}>{error.message}</div>
+  );
 };
 
 export default ErrorComponent;

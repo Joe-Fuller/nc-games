@@ -1,4 +1,5 @@
 import { Link } from "react-router-dom";
+import Votes from "./Votes";
 
 const ReviewCard = ({ review }) => {
   return (
@@ -58,9 +59,11 @@ const ReviewCard = ({ review }) => {
                 {/* this 4 is hardcoded, needs to be number of comments */}
                 <span className="numero">4</span>
               </li>
+              <li className="comments">
+                <Votes votes={review.votes} review_id={review.review_id} />
+              </li>
             </ul>
           </footer>
-          <p>votes: {review.votes}</p>
         </section>
       </main>
     </div>

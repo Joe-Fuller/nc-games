@@ -1,3 +1,5 @@
+import Votes from "./Votes";
+
 const SingleReviewCard = ({ review }) => {
   return (
     <main className="blog-container">
@@ -26,9 +28,11 @@ const SingleReviewCard = ({ review }) => {
         <footer className="blog-footer">
           <ul>
             <li className="published-date">{review.created_at.slice(0, 10)}</li>
+            <li className="comments">
+              <Votes votes={review.votes} review_id={review.review_id} />
+            </li>
           </ul>
         </footer>
-        <p>votes: {review.votes}</p>
       </section>
     </main>
   );
