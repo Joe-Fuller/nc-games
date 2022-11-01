@@ -143,3 +143,9 @@
   .comment-footer a {
     color: lighten(#333, 40%);
   }
+
+  .error {
+    position: relative;
+    top: -1.5rem;
+    right: -7rem;
+}

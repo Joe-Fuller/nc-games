@@ -9,11 +9,12 @@ const SingleReviewPage = () => {
   const { review_id } = useParams();
   const [review, setReview] = useState(null);
   const [comments, setComments] = useState([]);
-  const [isLoading, setIsLoading] = useState(true);
+  const [reviewIsLoading, setReviewIsLoading] = useState(true);
+  const [commentIsLoading, setCommentIsLoading] = useState(true);
   const [error, setError] = useState(null);
 
   useEffect(() => {
-    setIsLoading(true);
+    setReviewIsLoading(true);
     fetch(`https://ncgamesapp.herokuapp.com/api/reviews/${review_id}`)
       .then((res) => {
         if (res.ok) {
@@ -24,15 +25,16 @@ const SingleReviewPage = () => {
       .then(({ review }) => {
         setReview(review);
         setError(null);
-        setIsLoading(false);
+        setReviewIsLoading(false);
       })
       .catch((err) => {
         setError(err);
-        setIsLoading(false);
+        setReviewIsLoading(false);
       });
   }, [review_id]);
 
   useEffect(() => {
+    setCommentIsLoading(true);
     fetch(`https://ncgamesapp.herokuapp.com/api/reviews/${review_id}/comments`)
       .then((res) => {
         return res.json();
@@ -43,11 +45,11 @@ const SingleReviewPage = () => {
         } else {
           setComments([]);
         }
-        setIsLoading(false);
+        setCommentIsLoading(false);
       });
   }, [review_id]);
 
-  if (isLoading) {
+  if (reviewIsLoading || commentIsLoading) {
     return <div>Loading...</div>;
   }
 
@@ -58,7 +60,7 @@ const SingleReviewPage = () => {
   return (
     <div className="frontpage">
       <SingleReviewCard review={review} />
-      <PostComment />
+      <PostComment review_id={review.review_id} />
       {comments.map((comment) => {
         return <CommentCard comment={comment} key={comment.comment_id} />;
       })}
