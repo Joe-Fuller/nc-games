@@ -5,6 +5,7 @@
     height: 24px;
     position: absolute;
     top: -0.75rem;
+    cursor: pointer;
 }
 
 /* .vote-widget :hover {
