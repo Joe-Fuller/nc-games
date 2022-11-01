@@ -60,7 +60,7 @@ const ReviewCard = ({ review }) => {
                 <span className="numero">4</span>
               </li>
               <li className="comments">
-                <Votes votes={review.votes} />
+                <Votes votes={review.votes} review_id={review.review_id} />
               </li>
             </ul>
           </div>
