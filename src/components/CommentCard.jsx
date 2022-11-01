@@ -1,9 +1,10 @@
 import Votes from "./Votes";
 import "../styles/comment-card.css";
 
-const CommentCard = ({ comment }) => {
+const CommentCard = (props) => {
+  const comment = props.comment;
   return (
-    <div className="comment-body">
+    <div className={props.new ? "comment-body new" : "comment-body"}>
       <div className="comment-title">
         <h3 className="comment-author">{comment.author}</h3>
       </div>

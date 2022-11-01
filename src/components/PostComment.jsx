@@ -10,6 +10,7 @@ const PostComment = (props) => {
   const [error, setError] = useState(null);
   const [commentPosted, setCommentPosted] = useState(false);
   const [commentsPosted, setCommentsPosted] = useState([]);
+  const [posting, setPosting] = useState(false);
   const { activeUser } = useContext(ActiveUserContext);
 
   const today = new Date();
@@ -23,6 +24,7 @@ const PostComment = (props) => {
   };
 
   const handlePost = () => {
+    setPosting(true);
     fetch(
       `https://ncgamesapp.herokuapp.com/api/reviews/${review_id}/comments`,
       {
@@ -43,8 +45,9 @@ const PostComment = (props) => {
       .then(({ comment }) => {
         setError(null);
         setCommentPosted(true);
-        setCommentsPosted([...commentsPosted, comment]);
+        setCommentsPosted([comment, ...commentsPosted]);
         setComment("");
+        setPosting(false);
       })
       .catch((err) => {
         setError(err);
@@ -76,8 +79,8 @@ const PostComment = (props) => {
           <ul>
             <li className="comment-published-date">{currDate}</li>
             <li className="comments">
-              <button onClick={handlePost}>
-                {error ? "Try Again" : "Post"}
+              <button onClick={handlePost} disabled={posting}>
+                {error ? "Try Again" : posting ? "Posting" : "Post"}
               </button>
               <>
                 {error ? (
@@ -92,7 +95,13 @@ const PostComment = (props) => {
       </div>
       {commentPosted ? (
         commentsPosted.map((comment) => {
-          return <CommentCard comment={comment} key={comment.comment_id} />;
+          return (
+            <CommentCard
+              comment={comment}
+              key={comment.comment_id}
+              new={true}
+            />
+          );
         })
       ) : (
         <></>
