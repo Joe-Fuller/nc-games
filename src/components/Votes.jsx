@@ -37,7 +37,7 @@ const Votes = (props) => {
   };
 
   const updateVotes = (votesToAdd) => {
-    fetch(`https://ncgamesapp.herokuapp.com/api/review/${review_id}`, {
+    fetch(`https://ncgamesapp.herokuapp.com/api/reviews/${review_id}`, {
       method: "PATCH",
       headers: {
         "Content-Type": "application/json",
