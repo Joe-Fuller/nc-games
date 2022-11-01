@@ -19,8 +19,8 @@ const ReviewCard = ({ review }) => {
           </symbol>
         </defs>
       </svg>
-      <div className="blog-container">
-        <div className="blog-header">
+      <main className="blog-container">
+        <section className="blog-header">
           <Link to={`/reviews/${review.review_id}`} review={review}>
             <div
               style={{
@@ -36,17 +36,17 @@ const ReviewCard = ({ review }) => {
               </div>
             </div>
           </Link>
-        </div>
-        <div className="blog-body">
+        </section>
+        <section className="blog-body">
           <div className="blog-title">
             <Link to={`/reviews/${review.review_id}`} review={review}>
               <h1>{review.title}</h1>
             </Link>
           </div>
-          <div className="blog-summary">
+          <article className="blog-summary">
             <p>{review.review_body}</p>
-          </div>
-          <div className="blog-footer">
+          </article>
+          <footer className="blog-footer">
             <ul>
               <li className="published-date">
                 {review.created_at.slice(0, 10)}
@@ -59,10 +59,10 @@ const ReviewCard = ({ review }) => {
                 <span className="numero">4</span>
               </li>
             </ul>
-          </div>
+          </footer>
           <p>votes: {review.votes}</p>
-        </div>
-      </div>
+        </section>
+      </main>
     </div>
   );
 };
