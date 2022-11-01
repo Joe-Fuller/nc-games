@@ -1,12 +1,15 @@
 import { useContext, useState } from "react";
 import ActiveUserContext from "../contexts/ActiveUser";
 import "../styles/comment-card.css";
+import CommentCard from "./CommentCard";
 import ErrorComponent from "./ErrorComponent";
 
 const PostComment = (props) => {
   const review_id = props.review_id;
   const [comment, setComment] = useState("");
   const [error, setError] = useState(null);
+  const [commentPosted, setCommentPosted] = useState(false);
+  const [commentsPosted, setCommentsPosted] = useState([]);
   const { activeUser } = useContext(ActiveUserContext);
 
   const today = new Date();
@@ -32,10 +35,16 @@ const PostComment = (props) => {
     )
       .then((res) => {
         if (res.ok) {
-          setError(null);
+          return res.json();
         } else {
           throw Error(`${res.status}: ${res.statusText}`);
         }
+      })
+      .then(({ comment }) => {
+        setError(null);
+        setCommentPosted(true);
+        setCommentsPosted([...commentsPosted, comment]);
+        setComment("");
       })
       .catch((err) => {
         setError(err);
@@ -44,38 +53,50 @@ const PostComment = (props) => {
   };
 
   return (
-    <div className="comment-body">
-      <div className="comment-title">
-        <h2 className="comment-author">Post a Comment:</h2>
+    <div>
+      <div className="comment-body">
+        <div className="comment-title">
+          <h2 className="comment-author">Post a Comment:</h2>
+        </div>
+        <div className="comment-title">
+          <h3 className="comment-author">{activeUser.username}</h3>
+        </div>
+        <form>
+          <label htmlFor="comment"></label>
+          <input
+            htmlFor="comment"
+            id="comment"
+            placeholder="review this review"
+            onChange={handleChange}
+            value={comment}
+            className="comment-content"
+          ></input>
+        </form>
+        <div className="comment-footer">
+          <ul>
+            <li className="comment-published-date">{currDate}</li>
+            <li className="comments">
+              <button onClick={handlePost}>
+                {error ? "Try Again" : "Post"}
+              </button>
+              <>
+                {error ? (
+                  <ErrorComponent error={error} className="error" />
+                ) : (
+                  <></>
+                )}
+              </>
+            </li>
+          </ul>
+        </div>
       </div>
-      <div className="comment-title">
-        <h3 className="comment-author">{activeUser.username}</h3>
-      </div>
-      <form>
-        <label htmlFor="comment"></label>
-        <input
-          htmlFor="comment"
-          id="comment"
-          placeholder="review this review"
-          onChange={handleChange}
-          className="comment-content"
-        ></input>
-      </form>
-      <div className="comment-footer">
-        <ul>
-          <li className="comment-published-date">{currDate}</li>
-          <li className="comments">
-            <button onClick={handlePost}>{error ? "Try Again" : "Post"}</button>
-            <>
-              {error ? (
-                <ErrorComponent error={error} className="error" />
-              ) : (
-                <></>
-              )}
-            </>
-          </li>
-        </ul>
-      </div>
+      {commentPosted ? (
+        commentsPosted.map((comment) => {
+          return <CommentCard comment={comment} key={comment.comment_id} />;
+        })
+      ) : (
+        <></>
+      )}
     </div>
   );
 };
