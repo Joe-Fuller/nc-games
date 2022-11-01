@@ -22,6 +22,7 @@ const SingleReviewPage = () => {
       })
       .then(({ review }) => {
         setReview(review);
+        setError(null);
         setIsLoading(false);
       })
       .catch((err) => {
