@@ -1,5 +1,5 @@
 import { useState } from "react";
-import Error from "./ErrorComponent";
+import ErrorComponent from "./ErrorComponent";
 import "../styles/votes.css";
 
 const Votes = (props) => {
@@ -37,7 +37,7 @@ const Votes = (props) => {
   };
 
   const updateVotes = (votesToAdd) => {
-    fetch(`https://ncgamesapp.herokuapp.com/api/reviews/${review_id}`, {
+    fetch(`https://ncgamesapp.herokuapp.com/api/review/${review_id}`, {
       method: "PATCH",
       headers: {
         "Content-Type": "application/json",
@@ -46,19 +46,18 @@ const Votes = (props) => {
     })
       .then((res) => {
         if (!res.ok) {
-          throw Error(`${res.status}: ${res.statusText}`);
+          // throw Error(`${res.status}: ${res.statusText}`);
+          throw Error("Error Voting");
         } else {
           setError(null);
         }
       })
       .catch((err) => {
         setError(err);
+        setVotesGiven(0);
+        setVotes(props.votes);
       });
   };
-
-  if (error) {
-    return <Error error={error} />;
-  }
 
   return (
     <div className="vote-widget">
@@ -77,6 +76,7 @@ const Votes = (props) => {
       >
         &darr;
       </p>
+      <>{error ? <ErrorComponent error={error} className="error" /> : <></>}</>
     </div>
   );
 };
