@@ -214,6 +214,7 @@ body {
 .numero {
   position: relative;
   top: -0.5rem;
+  color: black
 }
 
 .icon-star,
