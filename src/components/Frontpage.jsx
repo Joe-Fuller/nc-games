@@ -12,9 +12,10 @@ const Frontpage = ({ sorting }) => {
 
   useEffect(() => {
     if (sorting) {
-      setSearchParams({ sort_by: sorting });
+      const orderBy = sorting[1] ? "desc" : "asc";
+      setSearchParams({ sort_by: sorting[0], order: orderBy });
       setFetchUrl(
-        `https://ncgamesapp.herokuapp.com/api/reviews/?sort_by=${sorting}`
+        `https://ncgamesapp.herokuapp.com/api/reviews/?sort_by=${sorting[0]}&order=${orderBy}`
       );
     }
   }, [sorting, setSearchParams]);

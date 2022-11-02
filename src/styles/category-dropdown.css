@@ -64,3 +64,10 @@
     display: block;
   }
 
+  .sort-arrow {
+    position: relative;
+    top: -2.25rem;
+    left: 5.5rem;
+    height: 0;
+    width: 0;
+  }
