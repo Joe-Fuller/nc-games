@@ -23,8 +23,10 @@ const PostComment = (props) => {
     setComment(event.target.value);
   };
 
-  const handlePost = () => {
+  const handlePost = (event) => {
+    event.preventDefault();
     setPosting(true);
+    setError(null);
     fetch(
       `https://ncgamesapp.herokuapp.com/api/reviews/${review_id}/comments`,
       {
@@ -39,7 +41,8 @@ const PostComment = (props) => {
         if (res.ok) {
           return res.json();
         } else {
-          throw Error(`${res.status}: ${res.statusText}`);
+          // throws a useful error message for the user rather than the dev
+          throw Error(`Error Posting`);
         }
       })
       .then(({ comment }) => {
@@ -51,6 +54,7 @@ const PostComment = (props) => {
       })
       .catch((err) => {
         setError(err);
+        setPosting(false);
         return <ErrorComponent error={err} />;
       });
   };
@@ -64,7 +68,7 @@ const PostComment = (props) => {
         <div className="comment-title">
           <h3 className="comment-author">{activeUser.username}</h3>
         </div>
-        <form>
+        <form onSubmit={handlePost}>
           <label htmlFor="comment"></label>
           <input
             htmlFor="comment"
