@@ -1,7 +1,25 @@
+import { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 import Votes from "./Votes";
 
 const ReviewCard = ({ review }) => {
+  const [reviewOwnerImg, setReviewOwnerImg] = useState(null);
+  const [isLoading, setIsLoading] = useState(true);
+
+  useEffect(() => {
+    setIsLoading(true);
+    fetch(`https://ncgamesapp.herokuapp.com/api/users/${review.owner}`)
+      .then((res) => {
+        return res.json();
+      })
+      .then(({ user }) => {
+        setReviewOwnerImg(user.avatar_url);
+        setIsLoading(false);
+      });
+  }, [review.owner]);
+
+  if (isLoading) return <div>Loading...</div>;
+
   return (
     <div>
       <svg
@@ -32,8 +50,14 @@ const ReviewCard = ({ review }) => {
               className="blog-cover"
             >
               <div className="blog-author">
-                {/* add user image here */}
-                <h3>{review.owner}</h3>
+                <img
+                  src={reviewOwnerImg}
+                  alt="user avatar"
+                  className="userAvatar"
+                ></img>
+                <h3>
+                  <span>{review.owner}</span>
+                </h3>
               </div>
             </div>
           </Link>

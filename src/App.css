@@ -89,12 +89,9 @@ body {
 .blog-author--no-cover {
   margin: 0 auto;
   padding-top: .125rem;
-  width: 80%;
 }
 
-.blog-author h3::before,
-.blog-author--no-cover h3::before {
-  /* background: url("https://s3-us-west-2.amazonaws.com/s.cdpn.io/17779/russ.jpeg"); */
+.userAvatar {
   background-size: cover;
   border-radius: 50%;
   content: " ";
@@ -105,10 +102,15 @@ body {
   top: 8px;
   width: 32px;
 }
+
 .blog-author h3 {
   color: #fff;
   font-weight: 100;
+  padding: 5px;
+  display: inline;
+  background-color: grey;
 }
+
 .blog-author--no-cover h3 {
   color: lighten(#333, 40%);
   font-weight: 100;

@@ -1,8 +1,25 @@
+import { useState, useEffect } from "react";
 import ErrorComponent from "./ErrorComponent";
 import Votes from "./Votes";
 
 const SingleReviewCard = (props) => {
   const review = props.review;
+  const [reviewOwnerImg, setReviewOwnerImg] = useState(null);
+  const [isLoading, setIsLoading] = useState(true);
+
+  useEffect(() => {
+    setIsLoading(true);
+    fetch(`https://ncgamesapp.herokuapp.com/api/users/${review.owner}`)
+      .then((res) => {
+        return res.json();
+      })
+      .then(({ user }) => {
+        setReviewOwnerImg(user.avatar_url);
+        setIsLoading(false);
+      });
+  }, [review.owner]);
+
+  if (isLoading) return <div>Loading...</div>;
 
   if (!review) {
     return <ErrorComponent error={"error"} />;
@@ -20,7 +37,11 @@ const SingleReviewCard = (props) => {
           className="blog-cover"
         >
           <div className="blog-author">
-            {/* add user image here */}
+            <img
+              src={reviewOwnerImg}
+              alt="user avatar"
+              className="userAvatar"
+            ></img>
             <h3>{review.owner}</h3>
           </div>
         </div>
