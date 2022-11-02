@@ -8,7 +8,9 @@ const Navbar = ({ setSorting }) => {
     <div className="navbar">
       <ul>
         <Link to="/">
-          <li className="navbar-button">Home</li>
+          <li className="navbar-button" onClick={setSorting(null)}>
+            Home
+          </li>
         </Link>
         <li>
           <CategoryDropdown />

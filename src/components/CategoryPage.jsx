@@ -4,9 +4,16 @@ import ReviewCard from "./ReviewCard";
 
 const CategoryPage = ({ sorting }) => {
   const { category } = useParams();
-  // const { description } = useLocation().state
+  const [description, setDescription] = useState(null);
 
-  console.log(useLocation());
+  const potentialDescription = useLocation().state;
+
+  if (
+    !description ||
+    (potentialDescription && description !== potentialDescription)
+  ) {
+    setDescription(potentialDescription);
+  }
 
   const [reviews, setReviews] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
@@ -44,7 +51,7 @@ const CategoryPage = ({ sorting }) => {
   return (
     <div className="frontpage">
       <h2>{category.split("-").join(" ")}</h2>
-      <p>description</p>
+      <p>{description.description}</p>
       {reviews.map((review) => {
         return <ReviewCard review={review} key={review.review_id} />;
       })}
