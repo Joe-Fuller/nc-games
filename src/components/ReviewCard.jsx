@@ -57,7 +57,7 @@ const ReviewCard = ({ review }) => {
                   <use href="#icon-bubble"></use>
                 </svg>
                 {/* this 4 is hardcoded, needs to be number of comments */}
-                <span className="numero">4</span>
+                <span className="numero">{review.comment_count}</span>
               </li>
               <li className="comments">
                 <Votes votes={review.votes} review_id={review.review_id} />
