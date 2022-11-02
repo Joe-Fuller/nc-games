@@ -1,8 +1,9 @@
 import { Link } from "react-router-dom";
 import CategoryDropdown from "./CategoryDropdown";
+import SortDropwdown from "./SortDropdown";
 import "../styles/navbar.css";
 
-const Navbar = () => {
+const Navbar = ({ setSorting }) => {
   return (
     <div className="navbar">
       <ul>
@@ -11,6 +12,9 @@ const Navbar = () => {
         </Link>
         <li>
           <CategoryDropdown />
+        </li>
+        <li>
+          <SortDropwdown setSorting={setSorting} />
         </li>
       </ul>
     </div>

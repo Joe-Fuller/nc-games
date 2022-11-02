@@ -1,13 +1,27 @@
 import { useEffect, useState } from "react";
+import { useSearchParams } from "react-router-dom";
 import ReviewCard from "./ReviewCard";
 
-const Frontpage = () => {
+const Frontpage = ({ sorting }) => {
   const [reviews, setReviews] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
+  const [searchParams, setSearchParams] = useSearchParams();
+  const [fetchUrl, setFetchUrl] = useState([
+    "https://ncgamesapp.herokuapp.com/api/reviews",
+  ]);
+
+  useEffect(() => {
+    if (sorting) {
+      setSearchParams({ sort_by: sorting });
+      setFetchUrl(
+        `https://ncgamesapp.herokuapp.com/api/reviews/?sort_by=${sorting}`
+      );
+    }
+  }, [sorting, setSearchParams]);
 
   useEffect(() => {
     setIsLoading(true);
-    fetch("https://ncgamesapp.herokuapp.com/api/reviews")
+    fetch(fetchUrl)
       .then((res) => {
         return res.json();
       })
@@ -15,7 +29,7 @@ const Frontpage = () => {
         setReviews(reviews);
         setIsLoading(false);
       });
-  }, []);
+  }, [fetchUrl]);
 
   if (isLoading) {
     return <div>Loading...</div>;

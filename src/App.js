@@ -16,15 +16,16 @@ function App() {
       "https://vignette.wikia.nocookie.net/mrmen/images/d/d6/Mr-Tickle-9a.png/revision/latest?cb=20180127221953",
   };
   const [activeUser, setActiveUser] = useState(user);
+  const [sorting, setSorting] = useState(null);
 
   return (
     <BrowserRouter>
       <div className="App">
         <ActiveUserContext.Provider value={{ activeUser, setActiveUser }}>
           <Header />
-          <Navbar />
+          <Navbar setSorting={setSorting} />
           <Routes>
-            <Route path="/" element={<Frontpage />}></Route>
+            <Route path="/" element={<Frontpage sorting={sorting} />}></Route>
             <Route
               path="/categories/:category"
               element={<CategoryPage />}
