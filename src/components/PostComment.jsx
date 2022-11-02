@@ -21,12 +21,15 @@ const PostComment = (props) => {
 
   const handleChange = (event) => {
     setComment(event.target.value);
+    setPosting(false);
+    setError(null);
   };
 
   const handlePost = (event) => {
     event.preventDefault();
     setPosting(true);
     setError(null);
+
     fetch(
       `https://ncgamesapp.herokuapp.com/api/reviews/${review_id}/comments`,
       {
@@ -34,7 +37,10 @@ const PostComment = (props) => {
         headers: {
           "Content-Type": "application/json",
         },
-        body: JSON.stringify({ username: activeUser.username, body: comment }),
+        body: JSON.stringify({
+          username: activeUser.username,
+          body: comment,
+        }),
       }
     )
       .then((res) => {
@@ -70,14 +76,16 @@ const PostComment = (props) => {
         </div>
         <form onSubmit={handlePost}>
           <label htmlFor="comment"></label>
-          <input
+          <textarea
             htmlFor="comment"
             id="comment"
+            rows={3}
+            disabled={posting}
             placeholder="review this review"
             onChange={handleChange}
             value={comment}
             className="comment-content"
-          ></input>
+          ></textarea>
         </form>
         <div className="comment-footer">
           <ul>
