@@ -2,9 +2,12 @@ import { useEffect, useState } from "react";
 import { useLocation, useParams, useSearchParams } from "react-router-dom";
 import ReviewCard from "./ReviewCard";
 
-const CategoryPage = ({ sorting }) => {
+const CategoryPage = (props) => {
   const { category } = useParams();
   const [description, setDescription] = useState(null);
+  const { sorting, setNeedsSortDropdown } = props;
+
+  setNeedsSortDropdown(true);
 
   const potentialDescription = useLocation().state;
 

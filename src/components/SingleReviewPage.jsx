@@ -5,13 +5,16 @@ import ErrorComponent from "./ErrorComponent";
 import CommentCard from "./CommentCard";
 import PostComment from "./PostComment";
 
-const SingleReviewPage = () => {
+const SingleReviewPage = (props) => {
   const { review_id } = useParams();
   const [review, setReview] = useState(null);
   const [comments, setComments] = useState([]);
   const [reviewIsLoading, setReviewIsLoading] = useState(true);
   const [commentIsLoading, setCommentIsLoading] = useState(true);
   const [error, setError] = useState(null);
+  const { setNeedsSortDropdown } = props;
+
+  setNeedsSortDropdown(false);
 
   useEffect(() => {
     setReviewIsLoading(true);

@@ -17,22 +17,41 @@ function App() {
   };
   const [activeUser, setActiveUser] = useState(user);
   const [sorting, setSorting] = useState(null);
+  const [needsSortDropdown, setNeedsSortDropdown] = useState(true);
 
   return (
     <BrowserRouter>
       <div className="App">
         <ActiveUserContext.Provider value={{ activeUser, setActiveUser }}>
           <Header />
-          <Navbar setSorting={setSorting} />
+          <Navbar
+            setSorting={setSorting}
+            needsSortDropdown={needsSortDropdown}
+          />
           <Routes>
-            <Route path="/" element={<Frontpage sorting={sorting} />}></Route>
+            <Route
+              path="/"
+              element={
+                <Frontpage
+                  sorting={sorting}
+                  setNeedsSortDropdown={setNeedsSortDropdown}
+                />
+              }
+            ></Route>
             <Route
               path="/categories/:category"
-              element={<CategoryPage sorting={sorting} />}
+              element={
+                <CategoryPage
+                  sorting={sorting}
+                  setNeedsSortDropdown={setNeedsSortDropdown}
+                />
+              }
             ></Route>
             <Route
               path="/reviews/:review_id"
-              element={<SingleReviewPage />}
+              element={
+                <SingleReviewPage setNeedsSortDropdown={setNeedsSortDropdown} />
+              }
             ></Route>
           </Routes>
         </ActiveUserContext.Provider>
