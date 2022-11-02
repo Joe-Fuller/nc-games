@@ -5,7 +5,7 @@ import ReviewCard from "./ReviewCard";
 const Frontpage = ({ sorting }) => {
   const [reviews, setReviews] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
-  const [searchParams, setSearchParams] = useSearchParams();
+  const [, setSearchParams] = useSearchParams();
   const [fetchUrl, setFetchUrl] = useState([
     "https://ncgamesapp.herokuapp.com/api/reviews",
   ]);
