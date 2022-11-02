@@ -28,7 +28,7 @@ function App() {
             <Route path="/" element={<Frontpage sorting={sorting} />}></Route>
             <Route
               path="/categories/:category"
-              element={<CategoryPage />}
+              element={<CategoryPage sorting={sorting} />}
             ></Route>
             <Route
               path="/reviews/:review_id"

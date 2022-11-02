@@ -6,9 +6,9 @@ const Frontpage = ({ sorting }) => {
   const [reviews, setReviews] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
   const [, setSearchParams] = useSearchParams();
-  const [fetchUrl, setFetchUrl] = useState([
-    "https://ncgamesapp.herokuapp.com/api/reviews",
-  ]);
+  const [fetchUrl, setFetchUrl] = useState(
+    "https://ncgamesapp.herokuapp.com/api/reviews"
+  );
 
   useEffect(() => {
     if (sorting) {
