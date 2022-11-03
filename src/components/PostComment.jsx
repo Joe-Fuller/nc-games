@@ -82,7 +82,7 @@ const PostComment = (props) => {
           </h3>
         </div>
         <form onSubmit={handlePost}>
-          <label htmlFor="comment"></label>
+          <label htmlFor="comment">comment input</label>
           <textarea
             htmlFor="comment"
             id="comment"
