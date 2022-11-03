@@ -169,15 +169,13 @@
   color: black;
 }
 
-.icon-star,
 .icon-bubble {
-  fill: lighten(#333, 40%);
   height: 24px;
   margin-right: 0.5rem;
   transition: 0.25s ease;
   width: 24px;
 }
 
-.comments :hover {
-  fill: #ff4d4d;
+.comments-icon {
+  right: 2rem;
 }

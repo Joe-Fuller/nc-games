@@ -148,6 +148,11 @@
   right: -7rem;
 }
 
+.posting-error {
+  position: absolute;
+  right: 2rem;
+}
+
 .new {
   background-color: #2179bc;
 }

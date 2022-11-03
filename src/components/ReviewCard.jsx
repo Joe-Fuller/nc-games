@@ -78,7 +78,7 @@ const ReviewCard = ({ review }) => {
                 {review.created_at.slice(0, 10)}
               </li>
               <Link to={`/reviews/${review.review_id}`} review={review}>
-                <li className="comments">
+                <li className="comments-icon">
                   <svg className="icon-bubble">
                     <use href="#icon-bubble"></use>
                   </svg>

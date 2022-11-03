@@ -98,6 +98,11 @@ const PostComment = (props) => {
           <ul>
             <li className="comment-published-date">{currDate}</li>
             <li className="comments">
+              {error ? (
+                <ErrorComponent error={error} className="posting-error" />
+              ) : (
+                <></>
+              )}
               <button
                 className="comment-button"
                 onClick={handlePost}
@@ -105,13 +110,6 @@ const PostComment = (props) => {
               >
                 {error ? "Try Again" : posting ? "Posting" : "Post"}
               </button>
-              <>
-                {error ? (
-                  <ErrorComponent error={error} className="error" />
-                ) : (
-                  <></>
-                )}
-              </>
             </li>
           </ul>
         </div>
