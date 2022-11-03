@@ -45,7 +45,7 @@ const CategoryPage = (props) => {
         setReviews(reviews);
         setIsLoading(false);
       });
-  }, [fetchUrl]);
+  }, [fetchUrl, category]);
 
   if (isLoading) {
     return <div>Loading...</div>;
