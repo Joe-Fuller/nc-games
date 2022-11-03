@@ -9,6 +9,7 @@ const CommentCard = (props) => {
   const [error, setError] = useState(null);
   const [deleting, setDeleting] = useState(false);
   const [deleted, setDeleted] = useState(false);
+  const [user, setUser] = useState(null);
   const { activeUser } = useContext(ActiveUserContext);
 
   const handleDelete = () => {
@@ -38,6 +39,12 @@ const CommentCard = (props) => {
       });
   };
 
+  fetch(`https://ncgamesapp.herokuapp.com/api/user/${comment.author}`).then(
+    (res) => {
+      return re;
+    }
+  );
+
   if (deleted) {
     return;
   }
@@ -48,6 +55,7 @@ const CommentCard = (props) => {
         <h3 className="comment-author">{comment.author}</h3>
       </div>
       <div>
+        <img src={""} alt="user avatar" />
         <p className="comment-content">{comment.body}</p>
       </div>
       <div className="comment-footer">
