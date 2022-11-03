@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import { useSearchParams } from "react-router-dom";
 import ReviewCard from "./ReviewCard";
+import "../styles/frontpage.css";
 
 const Frontpage = (props) => {
   const [reviews, setReviews] = useState([]);

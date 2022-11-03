@@ -1,6 +1,7 @@
 import { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 import Votes from "./Votes";
+import "../styles/review-card.css";
 
 const ReviewCard = ({ review }) => {
   const [reviewOwnerImg, setReviewOwnerImg] = useState(null);

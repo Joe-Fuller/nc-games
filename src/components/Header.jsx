@@ -1,5 +1,7 @@
+import "../styles/header.css";
+
 const Header = () => {
-  return <h1 className="header">Welcome to Joe's Review Site!</h1>;
+  return <h1 className="header">BoardGameReviews</h1>;
 };
 
 export default Header;
