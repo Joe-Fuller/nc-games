@@ -22,6 +22,8 @@ Hosted API:
 
 ## To Run Locally:
 
+`fork this repo`
+
 `git clone https://github.com/Joe-Fuller/nc-games.git`
 
 `cd nc-games`
