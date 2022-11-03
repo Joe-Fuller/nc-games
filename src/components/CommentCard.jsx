@@ -58,14 +58,21 @@ const CommentCard = (props) => {
   return (
     <div className={props.new ? "comment-body new" : "comment-body"}>
       <div className="comment-title">
-        <h3 className="comment-author">{comment.author}</h3>
+        <h3 className="comment-author">
+          {" "}
+          {userIsLoading ? (
+            "Loading..."
+          ) : (
+            <img
+              src={user.avatar_url}
+              alt="user avatar"
+              className="userAvatar"
+            />
+          )}
+          {comment.author}
+        </h3>
       </div>
       <div>
-        {userIsLoading ? (
-          "Loading..."
-        ) : (
-          <img src={user.avatar_url} alt="user avatar" className="userAvatar" />
-        )}
         <p className="comment-content">{comment.body}</p>
       </div>
       <div className="comment-footer">
@@ -85,7 +92,7 @@ const CommentCard = (props) => {
           {activeUser.username === comment.author ? (
             <li className="comments">
               <button
-                className="comment-button"
+                className="delete-comment-button"
                 onClick={handleDelete}
                 disabled={deleting}
               >
@@ -95,7 +102,7 @@ const CommentCard = (props) => {
           ) : (
             <></>
           )}
-          <li>
+          <li className="comment-card-votes">
             <Votes votes={comment.votes} comment_id={comment.comment_id} />
           </li>
         </ul>

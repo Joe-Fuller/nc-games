@@ -153,6 +153,7 @@
 }
 
 .comment-button {
+  position: absolute;
   border: none;
   padding: 4px 6px;
   background-color: #023047;
@@ -166,7 +167,39 @@
   transition: all 0.2s;
 }
 
+.delete-comment-button {
+  position: absolute;
+  border: none;
+  padding: 4px 6px;
+  background-color: #023047;
+  margin: 0;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  text-decoration: none;
+  color: #fb8500;
+  list-style-type: none;
+  transition: all 0.2s;
+  right: 2.5rem;
+}
+
 .comments :hover {
   background-color: #021147;
   font-size: 14px;
+}
+
+.userAvatar {
+  background-size: cover;
+  border-radius: 50%;
+  content: " ";
+  display: inline-block;
+  height: 32px;
+  margin-right: 0.5rem;
+  position: relative;
+  width: 32px;
+  top: 8px;
+}
+
+.comment-card-votes {
+  right: 3rem;
 }

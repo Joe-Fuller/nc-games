@@ -1,6 +1,7 @@
 import { useState, useEffect } from "react";
 import ErrorComponent from "./ErrorComponent";
 import Votes from "./Votes";
+import "../styles/review-card.css";
 
 const SingleReviewCard = (props) => {
   const review = props.review;
@@ -40,7 +41,7 @@ const SingleReviewCard = (props) => {
             <img
               src={reviewOwnerImg}
               alt="user avatar"
-              className="userAvatar"
+              className="userReviewAvatar"
             ></img>
             <h3>{review.owner}</h3>
           </div>
