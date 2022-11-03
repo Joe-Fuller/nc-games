@@ -5,7 +5,14 @@ import ReviewCard from "./ReviewCard";
 const CategoryPage = (props) => {
   const { category } = useParams();
   const [description, setDescription] = useState(null);
+  const [reviews, setReviews] = useState([]);
+  const [isLoading, setIsLoading] = useState(true);
+  const [, setSearchParams] = useSearchParams();
+  const [fetchUrl, setFetchUrl] = useState(
+    `https://ncgamesapp.herokuapp.com/api/reviews/?category=${category}`
+  );
   const { sorting, setNeedsSortDropdown } = props;
+  const [thisSorting, setThisSorting] = useState(["title", true]);
 
   setNeedsSortDropdown(true);
 
@@ -18,22 +25,16 @@ const CategoryPage = (props) => {
     setDescription(potentialDescription);
   }
 
-  const [reviews, setReviews] = useState([]);
-  const [isLoading, setIsLoading] = useState(true);
-  const [, setSearchParams] = useSearchParams();
-  const [fetchUrl, setFetchUrl] = useState(
-    `https://ncgamesapp.herokuapp.com/api/reviews/?category=${category}`
-  );
-
   useEffect(() => {
     if (sorting) {
-      const orderBy = sorting[1] ? "desc" : "asc";
-      setSearchParams({ sort_by: sorting[0], order: orderBy });
-      setFetchUrl(
-        `https://ncgamesapp.herokuapp.com/api/reviews/?category=${category}&sort_by=${sorting[0]}&order=${orderBy}`
-      );
+      setThisSorting(sorting);
     }
-  }, [sorting, setSearchParams, category]);
+    setFetchUrl(
+      `https://ncgamesapp.herokuapp.com/api/reviews/?category=${category}&sort_by=${
+        thisSorting[0]
+      }&order=${thisSorting[1] ? "desc" : "asc"}`
+    );
+  }, [thisSorting, sorting, setSearchParams, category]);
 
   useEffect(() => {
     setIsLoading(true);
