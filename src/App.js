@@ -11,10 +11,9 @@ import ErrorComponent from "./components/ErrorComponent";
 
 function App() {
   const user = {
-    username: "tickle122",
-    name: "Tom Tickle",
-    avatar_url:
-      "https://vignette.wikia.nocookie.net/mrmen/images/d/d6/Mr-Tickle-9a.png/revision/latest?cb=20180127221953",
+    username: "test user",
+    name: "Test User",
+    avatar_url: "https://cdn-icons-png.flaticon.com/512/1946/1946429.png",
   };
   const [activeUser, setActiveUser] = useState(user);
   const [sorting, setSorting] = useState(null);
