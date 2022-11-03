@@ -1,3 +1,7 @@
+# Board Game Review Website
+
+## Description
+
 This is a project to build a website using the API I built previously. It is built using React.
 
 Live Build:
@@ -12,13 +16,16 @@ Hosted API:
 
 - https://ncgamesapp.herokuapp.com/api
 
-Requires:
+## Requires:
 
 - Node v18.9.0
 
-To Run Locally:
+## To Run Locally:
 
-- git clone https://github.com/Joe-Fuller/nc-games.git
-- cd nc-games
-- npm i
-- npm start
+`git clone https://github.com/Joe-Fuller/nc-games.git`
+
+`cd nc-games`
+
+`npm install`
+
+`npm start`
