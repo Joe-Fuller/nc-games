@@ -1,4 +1,4 @@
-import { useContext, useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import ActiveUserContext from "../contexts/ActiveUser";
 import Votes from "./Votes";
 import ErrorComponent from "./ErrorComponent";
@@ -9,6 +9,8 @@ const CommentCard = (props) => {
   const [error, setError] = useState(null);
   const [deleting, setDeleting] = useState(false);
   const [deleted, setDeleted] = useState(false);
+  const [user, setUser] = useState(null);
+  const [userIsLoading, setUserIsLoading] = useState(true);
   const { activeUser } = useContext(ActiveUserContext);
 
   const handleDelete = () => {
@@ -38,6 +40,17 @@ const CommentCard = (props) => {
       });
   };
 
+  useEffect(() => {
+    fetch(`https://ncgamesapp.herokuapp.com/api/users/${comment.author}`)
+      .then((res) => {
+        return res.json();
+      })
+      .then(({ user }) => {
+        setUser(user);
+        setUserIsLoading(false);
+      });
+  }, [comment.author]);
+
   if (deleted) {
     return;
   }
@@ -48,6 +61,11 @@ const CommentCard = (props) => {
         <h3 className="comment-author">{comment.author}</h3>
       </div>
       <div>
+        {userIsLoading ? (
+          "Loading..."
+        ) : (
+          <img src={user.avatar_url} alt="user avatar" className="userAvatar" />
+        )}
         <p className="comment-content">{comment.body}</p>
       </div>
       <div className="comment-footer">
