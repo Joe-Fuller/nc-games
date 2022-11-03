@@ -59,7 +59,6 @@ const CommentCard = (props) => {
     <div className={props.new ? "comment-body new" : "comment-body"}>
       <div className="comment-title">
         <h3 className="comment-author">
-          {" "}
           {userIsLoading ? (
             "Loading..."
           ) : (
