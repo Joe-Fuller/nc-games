@@ -7,6 +7,7 @@ const Navbar = ({ setSorting, needsSortDropdown }) => {
   return (
     <div className="navbar">
       <ul>
+        <li></li>
         <Link to="/">
           <li className="navbar-button" onClick={setSorting(null)}>
             Home
@@ -22,6 +23,7 @@ const Navbar = ({ setSorting, needsSortDropdown }) => {
         ) : (
           <></>
         )}
+        <li> </li>
       </ul>
     </div>
   );
