@@ -21,6 +21,7 @@ const CommentCard = (props) => {
           </li>
         </ul>
       </div>
+      <button>Delete</button>
     </div>
   );
 };
