@@ -91,7 +91,11 @@ const PostComment = (props) => {
           <ul>
             <li className="comment-published-date">{currDate}</li>
             <li className="comments">
-              <button onClick={handlePost} disabled={posting}>
+              <button
+                className="comment-button"
+                onClick={handlePost}
+                disabled={posting}
+              >
                 {error ? "Try Again" : posting ? "Posting" : "Post"}
               </button>
               <>

@@ -66,7 +66,11 @@ const CommentCard = (props) => {
           </li>
           {activeUser.username === comment.author ? (
             <li className="comments">
-              <button onClick={handleDelete} disabled={deleting}>
+              <button
+                className="comment-button"
+                onClick={handleDelete}
+                disabled={deleting}
+              >
                 {deleting ? "Deleting..." : "Delete"}
               </button>
             </li>

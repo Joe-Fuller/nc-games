@@ -56,7 +56,7 @@ const SingleReviewCard = (props) => {
         <footer className="blog-footer">
           <ul>
             <li className="published-date">{review.created_at.slice(0, 10)}</li>
-            <li className="comments">
+            <li className="votes">
               <Votes votes={review.votes} review_id={review.review_id} />
             </li>
           </ul>
