@@ -22,12 +22,12 @@ Hosted API:
 
 ## To Run Locally:
 
-`fork this repo`
+- fork this repo
 
-`git clone https://github.com/Joe-Fuller/nc-games.git`
+- `git clone https://github.com/Joe-Fuller/nc-games.git`
 
-`cd nc-games`
+- `cd nc-games`
 
-`npm install`
+- `npm install`
 
-`npm start`
+- `npm start`
