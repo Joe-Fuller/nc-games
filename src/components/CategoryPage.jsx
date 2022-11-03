@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import { useLocation, useParams, useSearchParams } from "react-router-dom";
 import ReviewCard from "./ReviewCard";
+import ErrorComponent from "./ErrorComponent";
 
 const CategoryPage = (props) => {
   const { category } = useParams();
@@ -13,17 +14,9 @@ const CategoryPage = (props) => {
   );
   const { sorting, setNeedsSortDropdown } = props;
   const [thisSorting, setThisSorting] = useState(["title", true]);
+  const [error, setError] = useState(null);
 
   setNeedsSortDropdown(true);
-
-  const potentialDescription = useLocation().state;
-
-  if (
-    !description ||
-    (potentialDescription && description !== potentialDescription)
-  ) {
-    setDescription(potentialDescription);
-  }
 
   useEffect(() => {
     if (sorting) {
@@ -40,22 +33,44 @@ const CategoryPage = (props) => {
     setIsLoading(true);
     fetch(fetchUrl)
       .then((res) => {
-        return res.json();
+        if (res.ok) {
+          return res.json();
+        }
+        throw Error(`${res.status}: ${res.statusText}`);
       })
       .then(({ reviews }) => {
         setReviews(reviews);
         setIsLoading(false);
+        setError(null);
+      })
+      .catch((err) => {
+        setError(err);
+        setIsLoading(false);
       });
   }, [fetchUrl, category]);
+
+  const potentialDescription = useLocation().state;
+  if (potentialDescription !== null) {
+    if (
+      !description ||
+      (potentialDescription && description !== potentialDescription)
+    ) {
+      setDescription(potentialDescription);
+    }
+  }
 
   if (isLoading) {
     return <div>Loading...</div>;
   }
 
+  if (error) {
+    return <ErrorComponent error={error} />;
+  }
+
   return (
     <div className="frontpage">
       <h2>{category.split("-").join(" ")}</h2>
-      <p>{description.description}</p>
+      <p>{description ? description.description : "description not found"}</p>
       {reviews.map((review) => {
         return <ReviewCard review={review} key={review.review_id} />;
       })}
