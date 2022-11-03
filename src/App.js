@@ -7,6 +7,7 @@ import Frontpage from "./components/Frontpage";
 import CategoryPage from "./components/CategoryPage";
 import SingleReviewPage from "./components/SingleReviewPage";
 import ActiveUserContext from "./contexts/ActiveUser";
+import ErrorComponent from "./components/ErrorComponent";
 
 function App() {
   const user = {
@@ -32,6 +33,12 @@ function App() {
             <Route
               path="/reviews/:review_id"
               element={<SingleReviewPage />}
+            ></Route>
+            <Route
+              path="/*"
+              element={
+                <ErrorComponent error={{ message: "404: Route Not Found" }} />
+              }
             ></Route>
           </Routes>
         </ActiveUserContext.Provider>
