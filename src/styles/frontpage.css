@@ -17,6 +17,13 @@
   transition: all 0.2s;
   font-size: 24px;
   padding: 10px;
+  cursor: pointer;
+}
+
+:disabled {
+  background-color: #8ecae6;
+  color: #8ecae6;
+  cursor: default;
 }
 
 .back {
@@ -25,4 +32,9 @@
 
 .next {
   right: 2.5rem;
+}
+
+.button:hover {
+  background-color: #021147;
+  font-size: 28px;
 }
