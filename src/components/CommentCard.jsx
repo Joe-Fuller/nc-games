@@ -64,7 +64,7 @@ const CommentCard = (props) => {
           ) : (
             <img
               src={user.avatar_url}
-              alt="user avatar"
+              alt={`${user.username}'s avatar`}
               className="userAvatar"
             />
           )}

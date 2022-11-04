@@ -40,8 +40,8 @@ const ReviewCard = ({ review }) => {
         </defs>
       </svg>
       <main className="blog-container">
-        <section className="blog-header">
-          <Link to={`/reviews/${review.review_id}`} review={review}>
+        <Link to={`/reviews/${review.review_id}`} review={review}>
+          <section>
             <div
               style={{
                 background: `url(${review.review_img_url}`,
@@ -53,44 +53,41 @@ const ReviewCard = ({ review }) => {
               <div className="blog-author">
                 <img
                   src={reviewOwnerImg}
-                  alt="user avatar"
+                  alt={`${review.owner}'s avatar`}
                   className="userAvatar"
                 ></img>
-                <h3>
+                <h2>
                   <span>{review.owner}</span>
-                </h3>
+                </h2>
               </div>
             </div>
-          </Link>
-        </section>
-        <section className="blog-body">
-          <div className="blog-title">
-            <Link to={`/reviews/${review.review_id}`} review={review}>
+          </section>
+          <section className="blog-body">
+            <div className="blog-title">
               <h1>{review.title}</h1>
-            </Link>
-          </div>
-          <article className="blog-summary">
-            <p>{review.review_body}</p>
-          </article>
-          <footer className="blog-footer">
-            <ul>
-              <li className="published-date">
-                {review.created_at.slice(0, 10)}
-              </li>
-              <Link to={`/reviews/${review.review_id}`} review={review}>
+            </div>
+            <article className="blog-summary">
+              <p>{review.review_body}</p>
+            </article>
+            <footer className="blog-footer">
+              <ul>
+                <li className="published-date">
+                  {review.created_at.slice(0, 10)}
+                </li>
+
                 <li className="comments-icon">
                   <svg className="icon-bubble">
                     <use href="#icon-bubble"></use>
                   </svg>
                   <span className="numero">{review.comment_count}</span>
                 </li>
-              </Link>
-              <li className="votes">
-                <Votes votes={review.votes} review_id={review.review_id} />
-              </li>
-            </ul>
-          </footer>
-        </section>
+                <li className="votes">
+                  <Votes votes={review.votes} review_id={review.review_id} />
+                </li>
+              </ul>
+            </footer>
+          </section>
+        </Link>
       </main>
     </div>
   );

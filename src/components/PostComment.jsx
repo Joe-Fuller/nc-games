@@ -75,14 +75,16 @@ const PostComment = (props) => {
           <h3 className="comment-author">
             <img
               src={activeUser.avatar_url}
-              alt="user avatar"
+              alt={`${activeUser.username}'s avatar`}
               className="userAvatar"
             />
             {activeUser.username}
           </h3>
         </div>
         <form onSubmit={handlePost}>
-          <label htmlFor="comment">comment input</label>
+          <label hidden htmlFor="comment">
+            comment input
+          </label>
           <textarea
             htmlFor="comment"
             id="comment"

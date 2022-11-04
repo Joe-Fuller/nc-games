@@ -28,41 +28,46 @@ const SingleReviewCard = (props) => {
 
   return (
     <main className="blog-container">
-      <section className="blog-header">
-        <div
-          style={{
-            background: `url(${review.review_img_url}`,
-            backgroundSize: "cover",
-            backgroundPosition: "center",
-          }}
-          className="blog-cover"
-        >
-          <div className="blog-author">
-            <img
-              src={reviewOwnerImg}
-              alt="user avatar"
-              className="userReviewAvatar"
-            ></img>
-            <h3>{review.owner}</h3>
+      <div>
+        <section>
+          <div
+            style={{
+              background: `url(${review.review_img_url}`,
+              backgroundSize: "cover",
+              backgroundPosition: "center",
+            }}
+            className="blog-cover"
+          >
+            <div className="blog-author">
+              <img
+                src={reviewOwnerImg}
+                alt="user avatar"
+                className="userReviewAvatar"
+              ></img>
+              <h2>{review.owner}</h2>
+            </div>
           </div>
-        </div>
-      </section>
-      <section className="blog-body">
-        <div className="blog-title">
-          <h1>{review.title}</h1>
-        </div>
-        <article className="single-review-body">
-          <p>{review.review_body}</p>
-        </article>
-        <footer className="blog-footer">
-          <ul>
-            <li className="published-date">{review.created_at.slice(0, 10)}</li>
-            <li className="votes">
-              <Votes votes={review.votes} review_id={review.review_id} />
-            </li>
-          </ul>
-        </footer>
-      </section>
+        </section>
+
+        <section className="blog-body">
+          <div className="blog-title">
+            <h1>{review.title}</h1>
+          </div>
+          <article className="single-review-body">
+            <p>{review.review_body}</p>
+          </article>
+          <footer className="blog-footer">
+            <ul>
+              <li className="published-date">
+                {review.created_at.slice(0, 10)}
+              </li>
+              <li className="votes">
+                <Votes votes={review.votes} review_id={review.review_id} />
+              </li>
+            </ul>
+          </footer>
+        </section>
+      </div>
     </main>
   );
 };

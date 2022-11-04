@@ -85,21 +85,21 @@ const Votes = (props) => {
 
   return (
     <div className="vote-widget">
-      <p
-        className="arrow up"
+      <button
+        className="arrow up button"
         style={votesGiven === 1 ? { color: "red" } : {}}
         onClick={() => handleClick(1)}
       >
         &uarr;
-      </p>
+      </button>
       <p className="vote-count">{votes}</p>
-      <p
-        className="arrow down"
+      <button
+        className="arrow down button"
         style={votesGiven === -1 ? { color: "blue" } : {}}
         onClick={() => handleClick(-1)}
       >
         &darr;
-      </p>
+      </button>
       <>{error ? <ErrorComponent error={error} className="error" /> : <></>}</>
     </div>
   );
