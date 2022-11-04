@@ -10,7 +10,7 @@ const CategoryPage = (props) => {
   const [isLoading, setIsLoading] = useState(true);
   const [, setSearchParams] = useSearchParams();
   const [fetchUrl, setFetchUrl] = useState(
-    `https://ncgamesapp.herokuapp.com/api/reviews/?category=${category}&limit=100`
+    `https://ncgamesapp.herokuapp.com/api/reviews/?category=${category}`
   );
   const { sorting } = props;
   const [thisSorting, setThisSorting] = useState(["title", true]);
@@ -23,7 +23,7 @@ const CategoryPage = (props) => {
     setFetchUrl(
       `https://ncgamesapp.herokuapp.com/api/reviews/?category=${category}&sort_by=${
         thisSorting[0]
-      }&order=${thisSorting[1] ? "desc" : "asc"}&limit=100`
+      }&order=${thisSorting[1] ? "desc" : "asc"}`
     );
   }, [thisSorting, sorting, setSearchParams, category]);
 
