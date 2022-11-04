@@ -86,7 +86,7 @@ const Votes = (props) => {
   return (
     <div className="vote-widget">
       <button
-        className="arrow up button"
+        className="arrow up votebutton"
         style={votesGiven === 1 ? { color: "red" } : {}}
         onClick={() => handleClick(1)}
       >
@@ -94,7 +94,7 @@ const Votes = (props) => {
       </button>
       <p className="vote-count">{votes}</p>
       <button
-        className="arrow down button"
+        className="arrow down votebutton"
         style={votesGiven === -1 ? { color: "blue" } : {}}
         onClick={() => handleClick(-1)}
       >
