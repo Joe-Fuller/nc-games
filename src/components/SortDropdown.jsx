@@ -7,19 +7,25 @@ const SortDropdown = () => {
   // a value of true means order=desc
   const { setSorting } = useContext(SortingContext);
   const [sortOptions, setSortOptions] = useState({});
+  const [path, setPath] = useState(useLocation().pathname);
 
-  const path = useLocation().pathname;
+  const pathname = useLocation().pathname;
+  if (path !== pathname) {
+    setPath(pathname);
+  }
+
   useEffect(() => {
     if (path.includes("reviews")) {
-      if (sortOptions.hasOwnProperty("Title")) {
-        setSortOptions({ Votes: true, Date: true, User: true });
-      }
+      setSortOptions({ Votes: true, Date: true, User: true });
     } else {
-      if (!sortOptions.hasOwnProperty("Title")) {
-        setSortOptions({ Title: true, Votes: true, Date: true, User: true });
-      }
+      setSortOptions({
+        Title: sortOptions.hasOwnProperty("Title") ? sortOptions.Title : true,
+        Votes: true,
+        Date: true,
+        User: true,
+      });
     }
-  }, [path, sortOptions]);
+  }, [path]);
 
   const handleClick = (option) => {
     const orderValue = sortOptions[option];
