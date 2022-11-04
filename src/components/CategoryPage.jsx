@@ -1,9 +1,10 @@
-import { useEffect, useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import { useLocation, useParams, useSearchParams } from "react-router-dom";
 import ReviewCard from "./ReviewCard";
 import ErrorComponent from "./ErrorComponent";
+import SortingContext from "../contexts/Sorting";
 
-const CategoryPage = (props) => {
+const CategoryPage = () => {
   const { category } = useParams();
   const [description, setDescription] = useState(null);
   const [reviews, setReviews] = useState([]);
@@ -12,7 +13,7 @@ const CategoryPage = (props) => {
   const [fetchUrl, setFetchUrl] = useState(
     `https://ncgamesapp.herokuapp.com/api/reviews/?category=${category}`
   );
-  const { sorting } = props;
+  const { sorting } = useContext(SortingContext);
   const [thisSorting, setThisSorting] = useState(["title", true]);
   const [error, setError] = useState(null);
 
