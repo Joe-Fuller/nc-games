@@ -18,26 +18,26 @@ const CategoryDropdown = () => {
       });
   }, []);
 
-  if (isLoading) {
-    return <div>Loading...</div>;
-  }
-
   return (
     <div className="dropdown">
       <button className="dropbtn">Categories</button>
       <div className="dropdown-content">
         <div className="dropdown-content">
-          {categories.map((category) => {
-            return (
-              <Link
-                to={`/categories/${category.slug}`}
-                key={category.slug}
-                state={{ description: category.description }}
-              >
-                <>{category.slug}</>
-              </Link>
-            );
-          })}
+          {isLoading ? (
+            <div>Loading...</div>
+          ) : (
+            categories.map((category) => {
+              return (
+                <Link
+                  to={`/categories/${category.slug}`}
+                  key={category.slug}
+                  state={{ description: category.description }}
+                >
+                  <>{category.slug}</>
+                </Link>
+              );
+            })
+          )}
         </div>
       </div>
     </div>
