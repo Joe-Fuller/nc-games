@@ -1,5 +1,5 @@
-import { useContext, useEffect, useState } from "react";
-import { useParams, useSearchParams } from "react-router-dom";
+import { useCallback, useContext, useEffect, useState } from "react";
+import { useParams } from "react-router-dom";
 import SingleReviewCard from "./SingleReviewCard";
 import ErrorComponent from "./ErrorComponent";
 import CommentCard from "./CommentCard";
@@ -14,41 +14,55 @@ const SingleReviewPage = () => {
   const [commentIsLoading, setCommentIsLoading] = useState(true);
   const [error, setError] = useState(null);
   const [thisSorting, setThisSorting] = useState(["date", true]);
-  const [searchParams, setSearchParams] = useSearchParams();
   const { sorting } = useContext(SortingContext);
 
-  const SortComments = (comments, sort_by, order) => {
-    if (sort_by === "date") {
-      sort_by = "created_at";
-    }
-    if (sort_by === "user") {
-      sort_by = "author";
-    }
+  const SortComments = useCallback(
+    (comments) => {
+      let sort_by = thisSorting[0];
+      let order = thisSorting[1];
 
-    setSearchParams({ sort_by: sort_by, order: order ? "desc" : "asc" });
-
-    comments.sort((c1, c2) => {
-      if (sort_by === "created_at") {
-        return (
-          (Date.parse(c1[sort_by]) - Date.parse(c2[sort_by])) * (order ? -1 : 1)
-        );
+      if (!sort_by) {
+        console.log("no sort by");
+        return;
       }
-      return (c1[sort_by] - c2[sort_by]) * (order ? -1 : 1);
-    });
-    return comments;
-  };
+      if (sort_by === "date") {
+        sort_by = "created_at";
+      }
+      if (sort_by === "user") {
+        sort_by = "author";
+      }
+
+      //setSearchParams({ sort_by: sort_by, order: order ? "desc" : "asc" });
+
+      comments.sort((c1, c2) => {
+        if (sort_by === "created_at") {
+          return (
+            (Date.parse(c1[sort_by]) - Date.parse(c2[sort_by])) *
+            (order ? -1 : 1)
+          );
+        }
+        if (sort_by === "author") {
+          return c1[sort_by].localeCompare(c2[sort_by]) * (order ? -1 : 1);
+        }
+        return (c1[sort_by] - c2[sort_by]) * (order ? -1 : 1);
+      });
+      setComments(comments);
+    },
+    [thisSorting]
+  );
 
   useEffect(() => {
     if (sorting) {
       setThisSorting(sorting);
     }
-  }, [thisSorting, sorting]);
+  }, [sorting]);
 
   // useEffect(() => {
+  //   const thisParam = {};
   //   for (const searchParam of searchParams) {
-  //     console.log([searchParam[0], searchParam[0] === "desc"]);
-  //     setThisSorting([searchParam[0], searchParam[0] === "desc"]);
+  //     thisParam[searchParam[0]] = searchParam[1];
   //   }
+  //   setThisSorting([thisParam.sort_by, thisParam.order]);
   // }, [searchParams]);
 
   useEffect(() => {
@@ -80,8 +94,7 @@ const SingleReviewPage = () => {
       .then(({ comments }) => {
         if (comments) {
           if (thisSorting) {
-            comments = SortComments(comments, thisSorting[0], thisSorting[1]);
-            setComments(comments);
+            SortComments(comments);
           } else {
             setComments(comments);
           }
@@ -90,7 +103,7 @@ const SingleReviewPage = () => {
         }
         setCommentIsLoading(false);
       });
-  }, [review_id, thisSorting]);
+  }, [SortComments, review_id, thisSorting]);
 
   if (reviewIsLoading || commentIsLoading) {
     return <div>Loading...</div>;

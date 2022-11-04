@@ -31,7 +31,7 @@ const Frontpage = () => {
   }, [sorting, setSearchParams]);
 
   useEffect(() => {
-    let newUrl = "https://ncgamesapp.herokuapp.com/api/reviews/?";
+    let newUrl = "https://ncgamesapp.herokuapp.com/api/reviews/?limit=100&";
     for (const searchParam of searchParams) {
       newUrl += searchParam[0];
       newUrl += "=";
