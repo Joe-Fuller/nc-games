@@ -1,21 +1,29 @@
-import { useState } from "react";
+import { useState, useContext } from "react";
+import { useLocation } from "react-router-dom";
+import SortingContext from "../contexts/Sorting";
 import "../styles/category-dropdown.css";
 
-const SortDropdown = ({ setSorting }) => {
+const SortDropdown = () => {
   // a value of true means order=desc
-  const [sortOptions, setSortOptions] = useState({
-    Title: true,
-    Votes: true,
-    Date: true,
-  });
+  const { setSorting } = useContext(SortingContext);
+  const [sortOptions, setSortOptions] = useState({});
+
+  const path = useLocation().pathname;
+  if (path.includes("reviews")) {
+    if (sortOptions.hasOwnProperty("Title")) {
+      setSortOptions({ Votes: true, Date: true, User: true });
+    }
+  } else {
+    if (!sortOptions.hasOwnProperty("Title")) {
+      setSortOptions({ Title: true, Votes: true, Date: true, User: true });
+    }
+  }
 
   const handleClick = (option) => {
     const orderValue = sortOptions[option];
 
     const newSortOptions = { ...sortOptions };
     newSortOptions[option] = !sortOptions[option];
-    setSortOptions(newSortOptions);
-
     let sortOption = option.toLowerCase();
 
     if (sortOption === "date") {
@@ -23,6 +31,7 @@ const SortDropdown = ({ setSorting }) => {
     }
 
     setSorting([sortOption, orderValue]);
+    setSortOptions(newSortOptions);
   };
 
   return (

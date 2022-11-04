@@ -1,28 +1,46 @@
-import { useEffect, useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import { useSearchParams } from "react-router-dom";
 import ReviewCard from "./ReviewCard";
 import "../styles/frontpage.css";
+import SortingContext from "../contexts/Sorting";
 
-const Frontpage = (props) => {
+const Frontpage = () => {
   const [reviews, setReviews] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
-  const [, setSearchParams] = useSearchParams();
+  const [searchParams, setSearchParams] = useSearchParams();
   const [fetchUrl, setFetchUrl] = useState(
     "https://ncgamesapp.herokuapp.com/api/reviews"
   );
-  const { sorting, setNeedsSortDropdown } = props;
-
-  setNeedsSortDropdown(true);
+  const { sorting } = useContext(SortingContext);
 
   useEffect(() => {
     if (sorting) {
       const orderBy = sorting[1] ? "desc" : "asc";
-      setSearchParams({ sort_by: sorting[0], order: orderBy });
-      setFetchUrl(
-        `https://ncgamesapp.herokuapp.com/api/reviews/?sort_by=${sorting[0]}&order=${orderBy}`
-      );
+      if (sorting[0] === "user") {
+        setSearchParams({ sort_by: "username", order: orderBy });
+        setFetchUrl(
+          `https://ncgamesapp.herokuapp.com/api/reviews/?sort_by=owner&order=${orderBy}&limit=100`
+        );
+      } else {
+        setSearchParams({ sort_by: sorting[0], order: orderBy });
+        setFetchUrl(
+          `https://ncgamesapp.herokuapp.com/api/reviews/?sort_by=${sorting[0]}&order=${orderBy}&limit=100`
+        );
+      }
     }
   }, [sorting, setSearchParams]);
+
+  useEffect(() => {
+    let newUrl = "https://ncgamesapp.herokuapp.com/api/reviews/?";
+    for (const searchParam of searchParams) {
+      newUrl += searchParam[0];
+      newUrl += "=";
+      newUrl += searchParam[1];
+      newUrl += "&";
+    }
+    newUrl = newUrl.slice(0, -1);
+    setFetchUrl(newUrl);
+  }, [searchParams]);
 
   useEffect(() => {
     setIsLoading(true);

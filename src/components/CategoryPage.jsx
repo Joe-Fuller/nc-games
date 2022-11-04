@@ -10,13 +10,11 @@ const CategoryPage = (props) => {
   const [isLoading, setIsLoading] = useState(true);
   const [, setSearchParams] = useSearchParams();
   const [fetchUrl, setFetchUrl] = useState(
-    `https://ncgamesapp.herokuapp.com/api/reviews/?category=${category}`
+    `https://ncgamesapp.herokuapp.com/api/reviews/?category=${category}&limit=100`
   );
-  const { sorting, setNeedsSortDropdown } = props;
+  const { sorting } = props;
   const [thisSorting, setThisSorting] = useState(["title", true]);
   const [error, setError] = useState(null);
-
-  setNeedsSortDropdown(true);
 
   useEffect(() => {
     if (sorting) {
@@ -25,7 +23,7 @@ const CategoryPage = (props) => {
     setFetchUrl(
       `https://ncgamesapp.herokuapp.com/api/reviews/?category=${category}&sort_by=${
         thisSorting[0]
-      }&order=${thisSorting[1] ? "desc" : "asc"}`
+      }&order=${thisSorting[1] ? "desc" : "asc"}&limit=100`
     );
   }, [thisSorting, sorting, setSearchParams, category]);
 
