@@ -9,7 +9,7 @@ const Frontpage = () => {
   const [isLoading, setIsLoading] = useState(true);
   const [searchParams, setSearchParams] = useSearchParams();
   const [fetchUrl, setFetchUrl] = useState(
-    "https://ncgamesapp.herokuapp.com/api/reviews"
+    "https://boardgamereviews.cyclic.app/api/reviews"
   );
   const [totalCount, setTotalCount] = useState(0);
   const [page, setPage] = useState(1);
@@ -21,19 +21,19 @@ const Frontpage = () => {
       if (sorting[0] === "user") {
         setSearchParams({ sort_by: "username", order: orderBy, page: page });
         setFetchUrl(
-          `https://ncgamesapp.herokuapp.com/api/reviews/?sort_by=owner&order=${orderBy}&p=${page}`
+          `https://boardgamereviews.cyclic.app/api/reviews/?sort_by=owner&order=${orderBy}&p=${page}`
         );
       } else {
         setSearchParams({ sort_by: sorting[0], order: orderBy, page: page });
         setFetchUrl(
-          `https://ncgamesapp.herokuapp.com/api/reviews/?sort_by=${sorting[0]}&order=${orderBy}&p=${page}`
+          `https://boardgamereviews.cyclic.app/api/reviews/?sort_by=${sorting[0]}&order=${orderBy}&p=${page}`
         );
       }
     }
   }, [sorting, setSearchParams, page]);
 
   useEffect(() => {
-    let newUrl = "https://ncgamesapp.herokuapp.com/api/reviews/?";
+    let newUrl = "https://boardgamereviews.cyclic.app/api/reviews/?";
     for (const searchParam of searchParams) {
       newUrl += searchParam[0];
       newUrl += "=";

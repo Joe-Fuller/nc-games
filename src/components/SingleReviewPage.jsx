@@ -67,7 +67,7 @@ const SingleReviewPage = () => {
 
   useEffect(() => {
     setReviewIsLoading(true);
-    fetch(`https://ncgamesapp.herokuapp.com/api/reviews/${review_id}`)
+    fetch(`https://boardgamereviews.cyclic.app/api/reviews/${review_id}`)
       .then((res) => {
         if (res.ok) {
           return res.json();
@@ -87,7 +87,9 @@ const SingleReviewPage = () => {
 
   useEffect(() => {
     setCommentIsLoading(true);
-    fetch(`https://ncgamesapp.herokuapp.com/api/reviews/${review_id}/comments`)
+    fetch(
+      `https://boardgamereviews.cyclic.app/api/reviews/${review_id}/comments`
+    )
       .then((res) => {
         return res.json();
       })

@@ -39,7 +39,7 @@ const Votes = (props) => {
 
   const updateVotes = (votesToAdd) => {
     if (review_id) {
-      fetch(`https://ncgamesapp.herokuapp.com/api/reviews/${review_id}`, {
+      fetch(`https://boardgamereviews.cyclic.app/api/reviews/${review_id}`, {
         method: "PATCH",
         headers: {
           "Content-Type": "application/json",
@@ -60,7 +60,7 @@ const Votes = (props) => {
           setVotes(props.votes);
         });
     } else if (comment_id) {
-      fetch(`https://ncgamesapp.herokuapp.com/api/comments/${comment_id}`, {
+      fetch(`https://boardgamereviews.cyclic.app/api/comments/${comment_id}`, {
         method: "PATCH",
         headers: {
           "Content-Type": "application/json",

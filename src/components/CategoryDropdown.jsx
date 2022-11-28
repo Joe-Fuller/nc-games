@@ -8,7 +8,7 @@ const CategoryDropdown = () => {
 
   useEffect(() => {
     setIsLoading(true);
-    fetch("https://ncgamesapp.herokuapp.com/api/categories")
+    fetch("https://boardgamereviews.cyclic.app/api/categories")
       .then((res) => {
         return res.json();
       })

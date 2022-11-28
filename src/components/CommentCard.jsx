@@ -17,7 +17,7 @@ const CommentCard = (props) => {
     setDeleting(true);
     setError(null);
     fetch(
-      `https://ncgamesapp.herokuapp.com/api/comments/${comment.comment_id}`,
+      `https://boardgamereviews.cyclic.app/api/comments/${comment.comment_id}`,
       {
         method: "DELETE",
         headers: {
@@ -41,7 +41,7 @@ const CommentCard = (props) => {
   };
 
   useEffect(() => {
-    fetch(`https://ncgamesapp.herokuapp.com/api/users/${comment.author}`)
+    fetch(`https://boardgamereviews.cyclic.app/api/users/${comment.author}`)
       .then((res) => {
         return res.json();
       })

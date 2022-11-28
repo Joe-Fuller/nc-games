@@ -9,7 +9,7 @@ const ReviewCard = ({ review }) => {
 
   useEffect(() => {
     setIsLoading(true);
-    fetch(`https://ncgamesapp.herokuapp.com/api/users/${review.owner}`)
+    fetch(`https://boardgamereviews.cyclic.app/api/users/${review.owner}`)
       .then((res) => {
         return res.json();
       })

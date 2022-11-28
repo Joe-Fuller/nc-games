@@ -31,7 +31,7 @@ const PostComment = (props) => {
     setError(null);
 
     fetch(
-      `https://ncgamesapp.herokuapp.com/api/reviews/${review_id}/comments`,
+      `https://boardgamereviews.cyclic.app/api/reviews/${review_id}/comments`,
       {
         method: "POST",
         headers: {

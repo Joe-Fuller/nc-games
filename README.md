@@ -14,7 +14,7 @@ Backend Repo:
 
 Hosted API:
 
-- https://ncgamesapp.herokuapp.com/api
+- https://boardgamereviews.cyclic.app/api
 
 ## Requires:
 
